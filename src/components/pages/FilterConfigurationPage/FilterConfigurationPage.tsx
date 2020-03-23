@@ -1,3 +1,4 @@
 import React from 'react';
+import { FilterConfigurationForm } from './FilterConfigurationForm';
 
-export const FilterConfigurationPage = () => <div />;
+export const FilterConfigurationPage = () => <FilterConfigurationForm />;

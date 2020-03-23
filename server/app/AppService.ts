@@ -55,11 +55,11 @@ export class AppService {
 
   // eslint-disable-next-line class-methods-use-this
   private parseUserFiltersToFilterCriteria({
-    birthDate,
+    birthdate,
     prefferedCategories,
     rating
   }: UserFiltersDto): FilterCriteria {
-    const birthYear = moment(birthDate).year();
+    const birthYear = moment(birthdate).year();
     const currentYear = moment().year();
     const age = currentYear - birthYear;
 

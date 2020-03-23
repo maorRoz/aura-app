@@ -1,11 +1,11 @@
 import { AppActionTypes, SEND_USERS_FILTERS, SAVE_APPS } from './types';
-import { App, FilterCriteria } from '../../types';
+import { App, UserFiltersDto } from '../../types';
 
 export const sendUsersFilters = (
-  filterCriteria: FilterCriteria
+  userFilters: UserFiltersDto
 ): AppActionTypes => ({
   type: SEND_USERS_FILTERS,
-  payload: filterCriteria
+  payload: userFilters
 });
 
 export const saveApps = (apps: App[]): AppActionTypes => ({

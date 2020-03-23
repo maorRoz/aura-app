@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { App, FilterCriteria } from '../../../types';
+import { App, UserFiltersDto } from '../../../types';
 
 export const GetFilteredApps = (
-  filterCriteria: FilterCriteria
-): Promise<AxiosResponse<App[]>> => axios.post('/api/app', filterCriteria);
+  userFilters: UserFiltersDto
+): Promise<AxiosResponse<App[]>> => axios.post('/api/app', userFilters);

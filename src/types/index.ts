@@ -1,3 +1,3 @@
 export * from './App';
 export * from './Category';
-export * from './FilterCriteria';
+export * from './UserFilters';
