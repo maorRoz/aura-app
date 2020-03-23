@@ -3,9 +3,12 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ApplicationModule } from './ApplicationModule';
 
+const BASE_PATH = 'api';
+
 const runServer = async (port: string | number): Promise<void> => {
   const app = await NestFactory.create(ApplicationModule);
   app.useGlobalPipes(new ValidationPipe());
+  app.setGlobalPrefix(BASE_PATH);
   const options = new DocumentBuilder()
     .setTitle('ow-app')
     .setVersion('1.0.0')

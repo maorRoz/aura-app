@@ -1,6 +1,6 @@
 {
   "watch": ["server"],
-  "ext": "json,ts",
+  "ext": "ts",
   "execMap": {
     "ts": "node --require ts-node/register"
   },

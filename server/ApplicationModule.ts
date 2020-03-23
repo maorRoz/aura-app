@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppModule } from './app';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({ entities: [] })]
+  imports: [AppModule]
 })
 export class ApplicationModule {}
