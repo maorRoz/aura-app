@@ -1,21 +1,16 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { useState, useCallback, useEffect } from 'react';
 import moment from 'moment';
-import Rating from '@material-ui/lab/Rating';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import TextField from '@material-ui/core/TextField';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import { useDispatch } from 'react-redux';
+import { Form, FormField } from './FilterConfigurationForm.styled';
 import { sendUsersFilters } from '../../../../store';
-import { categories, Category } from '../../../../types';
+import { Category } from '../../../../types';
+import { CategorySelect } from '../../../CategorySelect';
+import { DatePicker } from '../../../DatePicker';
+import { Rating } from '../../../Rating';
 
-const categoriesOptions: Category[] = Array.from(categories);
+const REQUIRED_NUMBER_OF_CATEGORIES = 3;
 
 export const FilterConfigurationForm = () => {
   const dispatch = useDispatch();
@@ -35,10 +30,12 @@ export const FilterConfigurationForm = () => {
   ] = useState(false);
 
   useEffect(() => {
-    if (selectedCategories.length > 3) {
-      setTooMuchCategoriesSelectedError(true);
+    if (selectedCategories.length !== REQUIRED_NUMBER_OF_CATEGORIES) {
       setSubmitValid(false);
-    } else if (selectedCategories.length === 3) {
+      if (selectedCategories.length > REQUIRED_NUMBER_OF_CATEGORIES) {
+        setTooMuchCategoriesSelectedError(true);
+      }
+    } else {
       setTooMuchCategoriesSelectedError(false);
       setSubmitValid(true);
     }
@@ -56,54 +53,34 @@ export const FilterConfigurationForm = () => {
   }, [dispatch, selectedBirthDate, selectedRating, selectedCategories]);
 
   return (
-    <div>
-      <Autocomplete
-        multiple
-        // @ts-ignore
-        options={categoriesOptions}
-        value={selectedCategories}
-        onChange={(event: any, newValue: Category[] | null) => {
-          if (newValue) {
-            setSelectedCategories(newValue);
-          }
-        }}
-        // @ts-ignore
-        getOptionLabel={option => option}
-        renderInput={params => (
-          <TextField
-            {...params}
-            error={tooMuchCategoriesSelected}
-            helperText={
-              tooMuchCategoriesSelected &&
-              'You cannot select more than 3 categories'
-            }
-            variant="standard"
-            label="Select Top 3 Most Favorable Categories"
-            placeholder="Categories"
-          />
-        )}
-      />
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="dd/MM/yyyy"
-          label="Birthdate"
-          value={selectedBirthDate}
-          // @ts-ignore
-          onChange={handleDateChange}
+    <Form>
+      <FormField>
+        <CategorySelect
+          value={selectedCategories}
+          onChange={setSelectedCategories}
+          label="Select Top 3 Most Favorable Categories"
+          isError={tooMuchCategoriesSelected}
+          errorMessage="You cannot select more than 3 categories"
         />
-      </MuiPickersUtilsProvider>
-      <div>
-        <Typography component="legend">Rating</Typography>
+      </FormField>
+      <FormField>
+        <DatePicker
+          value={selectedBirthDate}
+          onChange={handleDateChange}
+          dateFormat="dd/MM/yyyy"
+          label="Birthdate"
+        />
+      </FormField>
+      <FormField>
         <Rating
           value={selectedRating}
-          onChange={(event, newValue) => {
-            setSelectedRating(newValue ?? 1);
-          }}
+          onChange={setSelectedRating}
+          label="Rating"
         />
-      </div>
+      </FormField>
+
       <Button
+        style={{ marginBottom: '20px' }}
         variant="contained"
         color="primary"
         disabled={!submitValid}
@@ -111,6 +88,6 @@ export const FilterConfigurationForm = () => {
       >
         SUBMIT
       </Button>
-    </div>
+    </Form>
   );
 };
