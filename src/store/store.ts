@@ -4,9 +4,9 @@ import { rootReducer } from './rootReducer';
 import { rootSaga } from './root.saga';
 import { sagaMiddleware } from './middlewares';
 
-export type OWAppState = ReturnType<typeof rootReducer>;
+export type AuraAppState = ReturnType<typeof rootReducer>;
 
-const configureStore = (): Store<OWAppState, any> => {
+const configureStore = (): Store<AuraAppState, any> => {
   const store = createStore(
     rootReducer,
     composeWithDevTools(applyMiddleware(sagaMiddleware))
