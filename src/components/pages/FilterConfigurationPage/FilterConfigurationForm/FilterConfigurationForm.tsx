@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { useState, useCallback, useEffect } from 'react';
 import moment from 'moment';
-import Button from '@material-ui/core/Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, FormField } from './FilterConfigurationForm.styled';
 import { sendUsersFilters } from '../../../../store';
 import { Category } from '../../../../types';
 import { CategorySelect } from '../../../CategorySelect';
 import { DatePicker } from '../../../DatePicker';
 import { Rating } from '../../../Rating';
+import { isLoadingAppsSelector } from '../../../../selectors';
+import { AsyncButton } from '../../../AsyncButton';
 
 const REQUIRED_NUMBER_OF_CATEGORIES = 3;
 
@@ -19,6 +20,8 @@ export const FilterConfigurationForm = () => {
   const [selectedRating, setSelectedRating] = useState(1);
   const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
   const [submitValid, setSubmitValid] = useState(false);
+
+  const submitted = useSelector(isLoadingAppsSelector);
 
   const handleDateChange = (date: Date) => {
     setSelectedBirthDate(date);
@@ -79,15 +82,13 @@ export const FilterConfigurationForm = () => {
         />
       </FormField>
 
-      <Button
-        style={{ marginBottom: '20px' }}
-        variant="contained"
-        color="primary"
-        disabled={!submitValid}
+      <AsyncButton
         onClick={handleSubmit}
+        busy={submitted}
+        disabled={submitted || !submitValid}
       >
-        SUBMIT
-      </Button>
+        SUBMITTED
+      </AsyncButton>
     </Form>
   );
 };

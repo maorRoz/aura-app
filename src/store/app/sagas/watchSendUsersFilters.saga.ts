@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios';
 import { SEND_USERS_FILTERS, SendUsersFilters } from '../types';
 import { App } from '../../../types';
 import { GetFilteredApps } from '../api';
-import { saveApps } from '../actions';
+import { saveApps, showLoadAppsFailure } from '../actions';
 
 export function* sendUsersFiltersSaga(action: SendUsersFilters) {
   try {
@@ -14,7 +14,7 @@ export function* sendUsersFiltersSaga(action: SendUsersFilters) {
     const apps = response.data;
     yield put(saveApps(apps));
   } catch (e) {
-    // add error
+    yield put(showLoadAppsFailure());
   }
 }
 
