@@ -2,25 +2,9 @@ import { Injectable } from '@nestjs/common';
 import moment from 'moment';
 import sampleSize from 'lodash/sampleSize';
 import { categoryFilter, ageFilter, rankFilter, Filter } from '../filters';
-import { App, FilterCriteria, Category } from '../types';
+import { App, FilterCriteria } from '../types';
 import { UserFiltersDto } from '../dto';
-
-type RawApp = {
-  id: number;
-  name: string;
-  category: Category;
-  external_id: string;
-  rating: number;
-  install_count: number;
-  description: string;
-  url: string;
-  publisher: string;
-  icon: string;
-  min_age: number;
-};
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const appList: RawApp[] = require('./apps.json');
+import { AppsFetcher } from './AppsFetcher';
 
 const NUMBER_OF_RANDOM_APPS_TO_PICK = 3;
 
@@ -28,12 +12,12 @@ const NUMBER_OF_RANDOM_APPS_TO_PICK = 3;
 export class AppService {
   filters: Filter[];
 
-  constructor() {
+  constructor(private readonly appFetcher: AppsFetcher) {
     this.filters = [categoryFilter, ageFilter, rankFilter];
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  private parseApps(rawApps: RawApp[]): App[] {
+  private parseApps(): App[] {
+    const rawApps = this.appFetcher.loadApps();
     return rawApps.map(
       ({
         external_id: externalId,
@@ -50,7 +34,7 @@ export class AppService {
   }
 
   getApps(): App[] {
-    return this.parseApps(appList);
+    return this.parseApps();
   }
 
   // eslint-disable-next-line class-methods-use-this
