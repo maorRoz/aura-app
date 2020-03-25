@@ -8,7 +8,10 @@ import {
 } from '../../../selectors';
 
 const ErrorState = () => (
-  <div style={{ color: 'red', fontWeight: 'bold', fontSize: '16px' }}>
+  <div
+    style={{ color: 'red', fontWeight: 'bold', fontSize: '16px' }}
+    data-testid="errorState"
+  >
     Failed to load apps :(
   </div>
 );

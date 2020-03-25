@@ -73,7 +73,7 @@ export const FilterConfigurationForm = () => {
   }, [handleSubmitByEnter]);
 
   return (
-    <Form>
+    <Form data-testid="filter-configuration-form">
       <FormField>
         <CategorySelect
           value={selectedCategories}
@@ -100,6 +100,7 @@ export const FilterConfigurationForm = () => {
       </FormField>
 
       <AsyncButton
+        testId="submitApps"
         onClick={handleSubmit}
         busy={submitted}
         disabled={submitted || !submitValid}

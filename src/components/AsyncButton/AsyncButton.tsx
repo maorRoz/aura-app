@@ -2,7 +2,7 @@ import React, { ReactNode, CSSProperties, MouseEvent } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 
-export const ButtonCircularProgress = () => (
+export const ButtonCircularProgress = ({ testId }: { testId?: string }) => (
   <CircularProgress
     color="inherit"
     size={24}
@@ -13,6 +13,7 @@ export const ButtonCircularProgress = () => (
       marginTop: '-12px',
       marginLeft: '-12px'
     }}
+    data-testid={testId}
   />
 );
 
@@ -22,6 +23,7 @@ export type AsyncButtonProps = {
   busy?: boolean;
   disabled?: boolean;
   children: ReactNode;
+  testId?: string;
 };
 
 export const AsyncButton = ({
@@ -29,7 +31,8 @@ export const AsyncButton = ({
   style,
   busy,
   disabled,
-  children
+  children,
+  testId
 }: AsyncButtonProps) => (
   <Button
     style={style}
@@ -38,7 +41,7 @@ export const AsyncButton = ({
     disabled={disabled}
     onClick={onClick}
   >
-    {busy && <ButtonCircularProgress />}
+    {busy && <ButtonCircularProgress testId={`${testId}-loading`} />}
     <span style={{ visibility: busy ? 'hidden' : 'visible' }}>{children}</span>
   </Button>
 );

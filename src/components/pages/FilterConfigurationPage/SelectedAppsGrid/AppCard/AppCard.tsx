@@ -4,9 +4,10 @@ import { App } from '../../../../../types';
 
 export type AppCardProps = {
   app: App;
+  testId?: string;
 };
 
-export const AppCard = ({ app }: AppCardProps) => {
+export const AppCard = ({ app, testId }: AppCardProps) => {
   const [inspected, setInspected] = useState(false);
   return (
     <Card
@@ -14,6 +15,7 @@ export const AppCard = ({ app }: AppCardProps) => {
       onClick={() => {
         setInspected(true);
       }}
+      data-testid={`card-${testId}`}
     >
       <AppName>{app.name}</AppName>
       {inspected && (
