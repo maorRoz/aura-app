@@ -55,6 +55,23 @@ export const FilterConfigurationForm = () => {
     );
   }, [dispatch, selectedBirthDate, selectedRating, selectedCategories]);
 
+  const handleSubmitByEnter = useCallback(
+    (e: KeyboardEvent): void => {
+      e.preventDefault();
+      if (e.keyCode === 13 && submitValid) {
+        handleSubmit();
+      }
+    },
+    [submitValid, handleSubmit]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keyup', handleSubmitByEnter);
+    return () => {
+      document.removeEventListener('keyup', handleSubmitByEnter);
+    };
+  }, [handleSubmitByEnter]);
+
   return (
     <Form>
       <FormField>

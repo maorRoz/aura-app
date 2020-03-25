@@ -12,6 +12,7 @@ export class AppController {
   @HttpCode(200)
   @Post()
   getFilteredApps(@Body() userFilters: UserFiltersDto): App[] {
-    return this.appService.filterApps(userFilters);
+    const apps = this.appService.getApps();
+    return this.appService.filterApps(userFilters, apps);
   }
 }

@@ -23,5 +23,22 @@
             "protocol": "inspector",
             "port": 5309
           },
+          {
+            "name": "Debug Jest Tests",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}//node_modules//jest//bin//jest.js",
+            "args": [
+              "test",
+              "lib-name",
+              "${workspaceRoot}/node_modules/.bin/jest",
+              "--runInBand",
+              "--coverage",
+              "false"
+            ],
+            "console": "integratedTerminal",
+            "disableOptimisticBPs": true,
+            "internalConsoleOptions": "neverOpen"
+          }
     ]
 }

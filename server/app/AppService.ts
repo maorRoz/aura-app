@@ -54,9 +54,8 @@ export class AppService {
     };
   }
 
-  filterApps(userFilters: UserFiltersDto): App[] {
+  filterApps(userFilters: UserFiltersDto, apps: App[]): App[] {
     const filterCriteria = this.parseUserFiltersToFilterCriteria(userFilters);
-    const apps = this.getApps();
 
     const filteredApps = apps.filter(app =>
       this.filters.every(filter => filter(app, filterCriteria))

@@ -10,7 +10,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Category, categories } from '../types';
 
 export class UserFiltersDto {
-  @ApiProperty({ required: true, example: '1992-03-23T21:19:19.692Z' })
+  @ApiProperty({ required: true, example: '1992-06-23T21:19:19.692Z' })
   @IsDateString()
   birthdate: string;
 
