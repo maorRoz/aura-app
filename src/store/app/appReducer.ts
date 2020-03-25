@@ -7,7 +7,7 @@ import {
 } from './types';
 import { App } from '../../types';
 
-type AppState = {
+export type AppState = {
   items: App[];
   loading?: boolean;
   error?: boolean;
@@ -22,12 +22,12 @@ export const appReducer: Reducer<AppState, AppActionTypes> = (
 ): AppState => {
   switch (action.type) {
     case SEND_USERS_FILTERS:
-      return { ...state, loading: true, error: false, fetched: true };
+      return { ...state, loading: true, error: false, fetched: false };
     case SAVE_APPS: {
       return { ...state, items: action.payload, loading: false };
     }
     case SHOW_LOAD_APPS_FAILURE:
-      return { ...state, error: true };
+      return { ...state, loading: false, error: true, fetched: true };
     default:
       return state;
   }
