@@ -1,13 +1,13 @@
 import pick from 'lodash/pick';
 import { Test } from '@nestjs/testing';
 import { AppService } from './AppService';
-import { FakeRawApp, FakeApp } from '../../test-utils';
+import { FakeRawApp, FakeApp } from '../test-utils';
 import { RawApp } from './RawApp';
 import { AppsFetcher } from './AppsFetcher';
-import { FakeUsersFiltersDto } from '../../test-utils/FakeUserFiltersDto';
+import { FakeUsersFiltersDto } from '../test-utils/FakeUserFiltersDto';
 import { UserFiltersDto } from '../dto';
 import { App } from '../types';
-import { Fakes } from '../../test-utils/Fakes';
+import { Fakes } from '../test-utils/Fakes';
 
 jest.mock('lodash/sampleSize', () => (apps: App[]): App[] => apps.slice(0, 3));
 

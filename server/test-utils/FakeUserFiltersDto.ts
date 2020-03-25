@@ -1,4 +1,4 @@
-import { UserFiltersDto } from '../server/dto/UserFiltersDto';
+import { UserFiltersDto } from '../dto/UserFiltersDto';
 import { Fakes } from './Fakes';
 
 export const FakeUsersFiltersDto = (

@@ -3,8 +3,8 @@ import request from 'supertest';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { AppController } from './AppController';
 import { AppService } from './AppService';
-import { FakeUsersFiltersDto, FakeApp } from '../../test-utils';
-import { Fakes } from '../../test-utils/Fakes';
+import { FakeUsersFiltersDto, FakeApp } from '../test-utils';
+import { Fakes } from '../test-utils/Fakes';
 import { App } from '../types';
 
 jest.mock('./AppService');

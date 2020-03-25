@@ -1,5 +1,5 @@
 import { Fakes } from './Fakes';
-import { App } from '../server/types';
+import { App } from '../types';
 
 export const FakeApp = (props?: Partial<App>): App => ({
   id: Fakes.number(),

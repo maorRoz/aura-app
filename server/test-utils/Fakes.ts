@@ -1,7 +1,7 @@
 import faker from 'faker';
 import moment from 'moment';
 import sample from 'lodash/sample';
-import { Category, categories } from '../server/types';
+import { Category, categories } from '../types';
 
 export const Fakes = {
   number: (): number => faker.random.number(),

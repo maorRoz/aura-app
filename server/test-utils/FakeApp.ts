@@ -1,18 +1,17 @@
-/* eslint-disable @typescript-eslint/camelcase */
-import { RawApp } from '../server/app/RawApp';
 import { Fakes } from './Fakes';
+import { App } from '../types';
 
-export const FakeRawApp = (props?: Partial<RawApp>): RawApp => ({
+export const FakeApp = (props?: Partial<App>): App => ({
   id: Fakes.number(),
   name: Fakes.string(),
   category: Fakes.category(),
-  external_id: Fakes.string(),
+  externalId: Fakes.string(),
   rating: Fakes.number(),
-  install_count: Fakes.number(),
+  installCount: Fakes.number(),
   description: Fakes.string(),
   url: Fakes.route(),
   publisher: Fakes.string(),
   icon: Fakes.route(),
-  min_age: Fakes.number(),
+  minAge: Fakes.number(),
   ...props
 });

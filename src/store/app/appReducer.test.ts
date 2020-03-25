@@ -1,5 +1,5 @@
 import { appReducer, AppState } from './appReducer';
-import { FakeUsersFiltersDto, FakeApp } from '../../../test-utils';
+import { FakeUsersFiltersDto, FakeApp } from '../../test-utils';
 import { sendUsersFilters, saveApps, showLoadAppsFailure } from './actions';
 
 describe('appReducer', () => {
@@ -19,7 +19,7 @@ describe('appReducer', () => {
   });
 
   test('SAVE_APPS', () => {
-    state = { items: [], loading: true, error: false, fetched: true };
+    state = { items: [], loading: true, error: false, fetched: false };
 
     const apps = [FakeApp(), FakeApp()];
     const response = appReducer(state, saveApps(apps));

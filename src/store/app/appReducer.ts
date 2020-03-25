@@ -24,7 +24,7 @@ export const appReducer: Reducer<AppState, AppActionTypes> = (
     case SEND_USERS_FILTERS:
       return { ...state, loading: true, error: false, fetched: false };
     case SAVE_APPS: {
-      return { ...state, items: action.payload, loading: false };
+      return { ...state, items: action.payload, loading: false, fetched: true };
     }
     case SHOW_LOAD_APPS_FAILURE:
       return { ...state, loading: false, error: true, fetched: true };

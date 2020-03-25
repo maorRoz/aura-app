@@ -1,7 +1,7 @@
 import { testSaga } from 'redux-saga-test-plan';
 import { sendUsersFiltersSaga } from './watchSendUsersFilters.saga';
 import { sendUsersFilters, saveApps, showLoadAppsFailure } from '../actions';
-import { FakeUsersFiltersDto, FakeApp } from '../../../../test-utils';
+import { FakeUsersFiltersDto, FakeApp } from '../../../test-utils';
 import { SendUsersFilters } from '../types';
 import { GetFilteredApps } from '../api';
 
